@@ -9,7 +9,7 @@ from pygame.font import Font
 
 from code.Enemy import Enemy
 from code.EntityMediator import EntityMediator
-from code.Const import COLOR_WHITE, MENU_OPTION, EVENT_ENEMY
+from code.Const import C_WHITE, MENU_OPTION, EVENT_ENEMY, WIN_HEIGHT, C_GREEN, C_CYAN
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.Player import Player
@@ -44,9 +44,14 @@ class Level:
                     if shoot is not None:
                         self.entity_list.append(shoot)
 
+                if ent.name == 'Player1':
+                    self.level_text(14, f'Player1 - Health: {ent.health} Score: {ent.score}', C_GREEN, (10, 25))
+                if ent.name == 'Player2':
+                    self.level_text(14, f'Player2 - Health: {ent.health} Score: {ent.score}', C_CYAN, (10, 45))
+
             # Texto a ser exibido na tela
-            self.level_text(14, f'FPS: {clock.get_fps() :.0f}', COLOR_WHITE, (10, 10))
-            self.level_text(14, f'Entidade: {len(self.entity_list)}', COLOR_WHITE, (10, 25))
+            self.level_text(14, f'FPS: {clock.get_fps() :.0f}', C_WHITE, (10, WIN_HEIGHT - 35))
+            self.level_text(14, f'Entidade: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))
 
             # Atualizar a tela
             pygame.display.flip()
